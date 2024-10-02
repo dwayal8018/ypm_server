@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("Select user From User user")
 	List<User> getUsers();
 
+	@Query(value="Select * From tb_mas_user user",nativeQuery = true)
+	List<User> fetchUser();
+
 }

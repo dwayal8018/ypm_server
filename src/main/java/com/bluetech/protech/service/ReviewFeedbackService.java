@@ -3,15 +3,15 @@ package com.bluetech.protech.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.bluetech.protech.pojo.ReviewFeedback;
+import com.bluetech.protech.dto.ReviewFeedbackDTO;
 
 public interface ReviewFeedbackService {
 
-	List<ReviewFeedback> createReviewFeedback(List<ReviewFeedback> reviewFeedbackList);
+	List<ReviewFeedbackDTO> createReviewFeedback(List<ReviewFeedbackDTO> reviewFeedbackList);
 
-	List<ReviewFeedback> getAllReviewFeedbacks();
+	List<ReviewFeedbackDTO> getAllReviewFeedbacks();
 
-	Optional<ReviewFeedback> getReviewFeedbackById(Integer id);
+	Optional<ReviewFeedbackDTO> getReviewFeedbackById(Integer id);
 
 	void deleteReviewFeedback(Integer id);
 

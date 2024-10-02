@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bluetech.protech.dto.PaymentDTO;
+import com.bluetech.protech.mapstruct.MapstructImplNew;
 import com.bluetech.protech.pojo.Payment;
 import com.bluetech.protech.repository.PaymentsRepository;
 import com.bluetech.protech.service.PaymentsService;
@@ -13,23 +15,30 @@ import com.bluetech.protech.service.PaymentsService;
 @Service
 public class PaymentsServiceImpl implements PaymentsService {
 
-	 @Autowired
-	    private PaymentsRepository paymentsRepository;
+	@Autowired
+	private PaymentsRepository paymentsRepository;
 
-	    public List<Payment> createPayment(List<Payment> paymentList) {
-	        return paymentsRepository.saveAll(paymentList);
-	    }
+	@Autowired
+	private MapstructImplNew mapstructImplNew;
 
-	    public List<Payment> getAllPayments() {
-	        return paymentsRepository.findAll();
-	    }
+	public List<PaymentDTO> createPayment(List<PaymentDTO> paymentDTOList) {
 
-	    public Optional<Payment> getPaymentById(Integer id) {
-	        return paymentsRepository.findById(id);
-	    }
+		List<Payment> paymentList = mapstructImplNew.paymentDTOsToPayments(paymentDTOList);
+		paymentList = paymentsRepository.saveAll(paymentList);
 
-	    public void deletePayment(Integer id) {
-	        paymentsRepository.deleteById(id);
-	    }
-	    
+		return mapstructImplNew.paymentsToPaymentDTOs(paymentList);
+	}
+
+	public List<PaymentDTO> getAllPayments() {
+		return mapstructImplNew.paymentsToPaymentDTOs(paymentsRepository.findAll());
+	}
+
+	public Optional<PaymentDTO> getPaymentById(Integer id) {
+		return paymentsRepository.findById(id).map(mapstructImplNew::paymentToPaymentDTO);
+	}
+
+	public void deletePayment(Integer id) {
+		paymentsRepository.deleteById(id);
+	}
+
 }

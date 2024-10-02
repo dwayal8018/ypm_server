@@ -1,7 +1,5 @@
 package com.bluetech.protech.dto;
 
-import java.util.Set;
-
 public class UserDTO {
 
 	private Integer userID;
@@ -18,13 +16,6 @@ public class UserDTO {
 
 	private String role; // e.g., 'client', 'tech expert', 'admin'
 
-	private Set<ServiceRequestDTO> serviceRequests;
-
-	private Set<ServiceRequestDTO> techExpertServiceRequests;
-
-	private Set<CustomPCBuildDTO> customPCBuilds;
-
-	private Set<DeliveryDTO> deliveries;
 
 	public Integer getUserID() {
 		return userID;
@@ -82,36 +73,5 @@ public class UserDTO {
 		this.role = role;
 	}
 
-	public Set<ServiceRequestDTO> getServiceRequests() {
-		return serviceRequests;
-	}
-
-	public void setServiceRequests(Set<ServiceRequestDTO> serviceRequests) {
-		this.serviceRequests = serviceRequests;
-	}
-
-	public Set<ServiceRequestDTO> getTechExpertServiceRequests() {
-		return techExpertServiceRequests;
-	}
-
-	public void setTechExpertServiceRequests(Set<ServiceRequestDTO> techExpertServiceRequests) {
-		this.techExpertServiceRequests = techExpertServiceRequests;
-	}
-
-	public Set<CustomPCBuildDTO> getCustomPCBuilds() {
-		return customPCBuilds;
-	}
-
-	public void setCustomPCBuilds(Set<CustomPCBuildDTO> customPCBuilds) {
-		this.customPCBuilds = customPCBuilds;
-	}
-
-	public Set<DeliveryDTO> getDeliveries() {
-		return deliveries;
-	}
-
-	public void setDeliveries(Set<DeliveryDTO> deliveries) {
-		this.deliveries = deliveries;
-	}
 
 }

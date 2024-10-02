@@ -4,6 +4,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +28,7 @@ public class PCComponent {
 	@Column(name = "ComponentType")
 	private String componentType; // e.g., 'GPU', 'CPU'
 
-	@OneToMany(mappedBy = "pcComponent")
+	@OneToMany(mappedBy = "pcComponent",fetch = FetchType.EAGER)
 	private Set<ComponentInventory> inventories;
 
 	public Integer getPcComponentID() {

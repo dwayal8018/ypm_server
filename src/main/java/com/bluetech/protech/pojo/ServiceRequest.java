@@ -3,8 +3,11 @@ package com.bluetech.protech.pojo;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,20 +39,26 @@ public class ServiceRequest {
 	@Column(name = "Priority")
 	private String priority; // e.g., 'low', 'medium', 'high'
 
-	// many instances of the entity containing the annotation (i.e. ServiceRequest) are associated with a
+	// many instances of the entity containing the annotation (i.e. ServiceRequest)
+	// are associated with a
 	// single instance of the target entity (i.e.client)
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "ClientID")
 	private User client;
 
+//	@JsonIgnore
+//	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "TechExpertID")
 	private User techExpert;
 
-	@OneToMany(mappedBy = "serviceRequest")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.EAGER)
 	private Set<ReviewFeedback> reviewFeedbacks;
 
-	@OneToMany(mappedBy = "serviceRequest")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.EAGER)
 	private Set<Orders> orders;
 
 	public Integer getServiceID() {

@@ -1,7 +1,5 @@
 package com.bluetech.protech.dto;
 
-import java.util.Set;
-
 public class CustomPCBuildDTO {
 
 	private Integer customPCID;
@@ -11,10 +9,6 @@ public class CustomPCBuildDTO {
 	private UserDTO client;
 	private UserDTO techExpert;
 	private UserDTO admin;
-
-	private Set<ComponentInventoryDTO> components;
-
-	private Set<OrdersDTO> orders;
 
 	public Integer getCustomPCID() {
 		return customPCID;
@@ -70,22 +64,6 @@ public class CustomPCBuildDTO {
 
 	public void setAdmin(UserDTO admin) {
 		this.admin = admin;
-	}
-
-	public Set<ComponentInventoryDTO> getComponents() {
-		return components;
-	}
-
-	public void setComponents(Set<ComponentInventoryDTO> components) {
-		this.components = components;
-	}
-
-	public Set<OrdersDTO> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<OrdersDTO> orders) {
-		this.orders = orders;
 	}
 
 }

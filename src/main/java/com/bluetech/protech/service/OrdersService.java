@@ -3,15 +3,15 @@ package com.bluetech.protech.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.bluetech.protech.pojo.Orders;
+import com.bluetech.protech.dto.OrdersDTO;
 
 public interface OrdersService {
 
-	List<Orders> createOrder(List<Orders> orderList);
+	List<OrdersDTO> createOrder(List<OrdersDTO> ordersDTOList);
 
-	List<Orders> getAllOrders();
+	List<OrdersDTO> getAllOrders();
 
-	Optional<Orders> getOrderById(Integer id);
+	Optional<OrdersDTO> getOrderById(Integer id);
 
 	void deleteOrder(Integer id);
 

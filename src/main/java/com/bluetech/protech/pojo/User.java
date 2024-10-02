@@ -2,22 +2,21 @@ package com.bluetech.protech.pojo; // Replace with your actual package name
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tb_mas_user")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "tb_mas_user")
 public class User {
 
 	@Id
@@ -43,16 +42,21 @@ public class User {
 	@Column(name = "Role")
 	private String role; // e.g., 'client', 'tech expert', 'admin','deliveryPerson'
 
-	@OneToMany(mappedBy = "client")
+	@JsonIgnore
+	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
 	private Set<ServiceRequest> serviceRequests;
 
-	@OneToMany(mappedBy = "techExpert")
+//	@JsonIgnore
+//	@JsonManagedReference
+	@OneToMany(mappedBy = "techExpert",fetch = FetchType.LAZY)
 	private Set<ServiceRequest> techExpertServiceRequests;
 
-	@OneToMany(mappedBy = "client")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
 	private Set<CustomPCBuild> customPCBuilds;
 
-	@OneToMany(mappedBy = "deliveryPerson")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "deliveryPerson",fetch = FetchType.LAZY)
 	private Set<Delivery> deliveries;
 
 	public String getPassword() {

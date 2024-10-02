@@ -1,6 +1,5 @@
 package com.bluetech.protech.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bluetech.protech.pojo.User;
+import com.bluetech.protech.dto.UserDTO;
 import com.bluetech.protech.service.UserService;
 
 @RestController
@@ -26,7 +25,7 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping("")
-	public List<User> getUsers(@RequestParam(name="search") String search) {
+	public List<UserDTO> getUsers(@RequestParam(name="search") String search) {
 		return userService.getUsers(search);
 
 	}
@@ -37,23 +36,23 @@ public class UserController {
 	}
 
 	@PostMapping
-	public List<User> createUser(@RequestBody List<User> userList) {
+	public List<UserDTO> createUser(@RequestBody List<UserDTO> userList) {
 		return userService.createUser(userList);
 	}
 	
 	@PostMapping("/register")
-	public List<User> registerUser(@RequestBody User user) {
+	public List<UserDTO> registerUser(@RequestBody UserDTO user) {
 		return userService.createUser(Arrays.asList(user));
 	}
 
 	@GetMapping("/{id}")
-	public User getUser(@PathVariable Integer id) {
+	public UserDTO getUser(@PathVariable Integer id) {
 		return userService.getUser(id);
 	}
 
 	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Integer id, @RequestBody User user) {
-		return userService.updateUser(id, user);
+	public UserDTO updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
+		return userService.updateUser(id, userDTO);
 	}
 
 	@DeleteMapping("/{id}")

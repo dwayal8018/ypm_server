@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bluetech.protech.dto.OrdersDTO;
+import com.bluetech.protech.mapstruct.MapstructImplNew;
 import com.bluetech.protech.pojo.Orders;
 import com.bluetech.protech.repository.OrdersRepository;
 import com.bluetech.protech.service.OrdersService;
@@ -13,22 +15,28 @@ import com.bluetech.protech.service.OrdersService;
 @Service
 public class OrdersServiceImpl implements OrdersService {
 
-	   @Autowired
-	    private OrdersRepository ordersRepository;
+	@Autowired
+	private OrdersRepository ordersRepository;
 
-	    public List<Orders> createOrder(List<Orders> orderList) {
-	        return ordersRepository.saveAll(orderList);
-	    }
+	@Autowired
+	private MapstructImplNew mapstructImplNew;
 
-	    public List<Orders> getAllOrders() {
-	        return ordersRepository.findAll();
-	    }
+	public List<OrdersDTO> createOrder(List<OrdersDTO> orderList) {
+		List<Orders> ordersList = mapstructImplNew.ordersDTOsToOrders(orderList);
 
-	    public Optional<Orders> getOrderById(Integer id) {
-	        return ordersRepository.findById(id);
-	    }
+		ordersList = ordersRepository.saveAll(ordersList);
+		return mapstructImplNew.ordersToOrdersDTOs(ordersList);
+	}
 
-	    public void deleteOrder(Integer id) {
-	        ordersRepository.deleteById(id);
-	    }
+	public List<OrdersDTO> getAllOrders() {
+		return mapstructImplNew.ordersToOrdersDTOs(ordersRepository.findAll());
+	}
+
+	public Optional<OrdersDTO> getOrderById(Integer id) {
+		return ordersRepository.findById(id).map(mapstructImplNew::ordersToOrdersDTO);
+	}
+
+	public void deleteOrder(Integer id) {
+		ordersRepository.deleteById(id);
+	}
 }

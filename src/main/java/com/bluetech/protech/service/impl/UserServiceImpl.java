@@ -3,8 +3,11 @@ package com.bluetech.protech.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bluetech.protech.dto.UserDTO;
+import com.bluetech.protech.mapstruct.MapstructImplNew;
 import com.bluetech.protech.pojo.User;
 import com.bluetech.protech.repository.UserRepository;
 import com.bluetech.protech.service.UserService;
@@ -14,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 
+	@Autowired
+	MapstructImplNew mapstruct;
+	
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
@@ -25,23 +31,31 @@ public class UserServiceImpl implements UserService {
 //        return user;
 //    }
 
+
+
 	@Override
-	public List<User> createUser(List<User> user) {
-		return userRepository.saveAll(user);
+	public List<UserDTO> createUser(List<UserDTO> userDTOList) {
+
+		List<User> userList = userRepository.saveAll(mapstruct.userDTOsToUsers(userDTOList));
+
+		return mapstruct.usersToUserDTOs(userList);
+
 	}
 
 	@Override
-	public User getUser(Integer id) {
-		return userRepository.findById(id).orElse(null);
+	public UserDTO getUser(Integer id) {
+		return mapstruct.userToUserDTO(userRepository.findById(id).orElse(null));
 	}
 
 	@Override
-	public User updateUser(Integer id, User user) {
+	public UserDTO updateUser(Integer id, UserDTO userDTO) {
 		if (userRepository.existsById(id)) {
+			User user = mapstruct.userDTOToUser(userDTO); // Convert DTO to Entity
 			user.setUserID(id);
-			return userRepository.save(user);
+			User updatedUser = userRepository.save(user);
+			return mapstruct.userToUserDTO(updatedUser); // Convert back to DTO for return
 		}
-		return null;
+		return null; // or throw an exception
 	}
 
 	@Override
@@ -50,9 +64,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getUsers(String search) {
-
-		return userRepository.getUsers();
+	public List<UserDTO> getUsers(String search) {
+		List<User> users = userRepository.fetchUser();
+		return mapstruct.usersToUserDTOs(users);
 	}
 
 	@Override

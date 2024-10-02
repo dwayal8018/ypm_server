@@ -2,21 +2,21 @@ package com.bluetech.protech.service;
 
 import java.util.List;
 
-import com.bluetech.protech.pojo.User;
+import com.bluetech.protech.dto.UserDTO;
 
 public interface UserService  {
 
-	List<User> createUser(List<User> userList);
+	List<UserDTO> createUser(List<UserDTO> userList);
 
 //	User getUser(Long id);
 
-	User updateUser(Integer id, User user);
+	UserDTO updateUser(Integer id, UserDTO userDTO);
 
 	void deleteUser(Integer id);
 
-	User getUser(Integer id);
+	UserDTO getUser(Integer id);
 
-	List<User> getUsers(String search);
+	List<UserDTO> getUsers(String search);
 
 	Boolean userExists(String username);
 

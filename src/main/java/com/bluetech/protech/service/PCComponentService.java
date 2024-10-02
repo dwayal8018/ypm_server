@@ -3,15 +3,15 @@ package com.bluetech.protech.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.bluetech.protech.pojo.PCComponent;
+import com.bluetech.protech.dto.PCComponentDTO;
 
 public interface PCComponentService {
 
-	List<PCComponent> createPCComponent(List<PCComponent> pcComponent);
+	List<PCComponentDTO> createPCComponent(List<PCComponentDTO> pcComponentList);
 
-	List<PCComponent> getAllPCComponents();
+	List<PCComponentDTO> getAllPCComponents();
 
-	Optional<PCComponent> getPCComponentById(Integer id);
+	Optional<PCComponentDTO> getPCComponentById(Integer id);
 
 	void deletePCComponent(Integer id);
 
