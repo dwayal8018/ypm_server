@@ -30,11 +30,11 @@ public class InvoiceController {
 	        List<InvoiceDTO> createdInvoices = invoiceService.createInvoice(Arrays.asList(invoiceDTOList));
 	        return new ResponseEntity<>(createdInvoices, HttpStatus.CREATED);
 	    }
-	    @PostMapping
-	    public ResponseEntity<List<InvoiceDTO>> createInvoices(@RequestBody List<InvoiceDTO> invoiceDTOList) {
-	    	List<InvoiceDTO> createdInvoices = invoiceService.createInvoice(invoiceDTOList);
-	    	return new ResponseEntity<>(createdInvoices, HttpStatus.CREATED);
-	    }
+//	    @PostMapping
+//	    public ResponseEntity<List<InvoiceDTO>> createInvoices(@RequestBody List<InvoiceDTO> invoiceDTOList) {
+//	    	List<InvoiceDTO> createdInvoices = invoiceService.createInvoice(invoiceDTOList);
+//	    	return new ResponseEntity<>(createdInvoices, HttpStatus.CREATED);
+//	    }
 
 	    @GetMapping
 	    public ResponseEntity<List<InvoiceDTO>> getAllInvoices() {

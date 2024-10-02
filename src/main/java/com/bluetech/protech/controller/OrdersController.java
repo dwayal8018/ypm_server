@@ -31,11 +31,11 @@ public class OrdersController {
 		return new ResponseEntity<>(createdOrders, HttpStatus.CREATED);
 	}
 
-	@PostMapping
-	public ResponseEntity<List<OrdersDTO>> createOrders(@RequestBody List<OrdersDTO> OrdersDTOList) {
-		List<OrdersDTO> createdOrders = ordersService.createOrder(OrdersDTOList);
-		return new ResponseEntity<>(createdOrders, HttpStatus.CREATED);
-	}
+//	@PostMapping
+//	public ResponseEntity<List<OrdersDTO>> createOrders(@RequestBody List<OrdersDTO> OrdersDTOList) {
+//		List<OrdersDTO> createdOrders = ordersService.createOrder(OrdersDTOList);
+//		return new ResponseEntity<>(createdOrders, HttpStatus.CREATED);
+//	}
 
 	@GetMapping
 	public ResponseEntity<List<OrdersDTO>> getAllOrders() {

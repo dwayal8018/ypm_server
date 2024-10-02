@@ -30,12 +30,12 @@ public class PaymentsController {
 		List<PaymentDTO> createdPayments = paymentsService.createPayment(Arrays.asList(paymentDTOList));
 		return new ResponseEntity<>(createdPayments, HttpStatus.CREATED);
 	}
-
-	@PostMapping
-	public ResponseEntity<List<PaymentDTO>> createPayments(@RequestBody List<PaymentDTO> paymentDTOList) {
-		List<PaymentDTO> createdPayments = paymentsService.createPayment(paymentDTOList);
-		return new ResponseEntity<>(createdPayments, HttpStatus.CREATED);
-	}
+//
+//	@PostMapping
+//	public ResponseEntity<List<PaymentDTO>> createPayments(@RequestBody List<PaymentDTO> paymentDTOList) {
+//		List<PaymentDTO> createdPayments = paymentsService.createPayment(paymentDTOList);
+//		return new ResponseEntity<>(createdPayments, HttpStatus.CREATED);
+//	}
 
 	@GetMapping
 	public ResponseEntity<List<PaymentDTO>> getAllPayments() {

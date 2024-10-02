@@ -30,11 +30,11 @@ public class DeliveryController {
 	        List<DeliveryDTO> createdDeliveries = deliveryService.createDelivery(Arrays.asList(deliveryList));
 	        return new ResponseEntity<>(createdDeliveries, HttpStatus.CREATED);
 	    }
-	    @PostMapping
-	    public ResponseEntity<List<DeliveryDTO>> createDeliveries(@RequestBody List<DeliveryDTO> deliveryList) {
-	    	List<DeliveryDTO> createdDeliveries = deliveryService.createDelivery(deliveryList);
-	    	return new ResponseEntity<>(createdDeliveries, HttpStatus.CREATED);
-	    }
+//	    @PostMapping
+//	    public ResponseEntity<List<DeliveryDTO>> createDeliveries(@RequestBody List<DeliveryDTO> deliveryList) {
+//	    	List<DeliveryDTO> createdDeliveries = deliveryService.createDelivery(deliveryList);
+//	    	return new ResponseEntity<>(createdDeliveries, HttpStatus.CREATED);
+//	    }
 
 	    @GetMapping
 	    public ResponseEntity<List<DeliveryDTO>> getAllDeliveries() {
