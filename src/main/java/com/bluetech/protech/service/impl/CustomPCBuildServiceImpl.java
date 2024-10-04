@@ -57,8 +57,15 @@ public class CustomPCBuildServiceImpl implements CustomPCBuildService {
 		return user;
 	}
 
-	public List<CustomPCBuildDTO> getAllCustomPCBuilds() {
-		List<CustomPCBuild> customPCBuilds = customPCBuildRepository.findAll();
+	public List<CustomPCBuildDTO> getAllCustomPCBuilds(String userRole, Integer userID) {
+		
+		List<CustomPCBuild> customPCBuilds=new ArrayList<>();
+		if("admin".equals(userRole))
+			customPCBuilds = customPCBuildRepository.findAll();
+		else if("client".equals(userRole))
+			customPCBuilds = customPCBuildRepository.findbyClientId(userID);
+		else 
+			customPCBuilds = customPCBuildRepository.findbyTechExpertId(userID);
 //		return mapstructImplNew.customPCBuildsToCustomPCBuildDTOs(customPCBuilds);
 		return customPCBuilds.stream().map(mapstructImplNew::customPCBuildToCustomPCBuildDTO)
 				.collect(Collectors.toList());
@@ -71,4 +78,5 @@ public class CustomPCBuildServiceImpl implements CustomPCBuildService {
 	public void deleteCustomPCBuild(Integer id) {
 		customPCBuildRepository.deleteById(id);
 	}
+
 }

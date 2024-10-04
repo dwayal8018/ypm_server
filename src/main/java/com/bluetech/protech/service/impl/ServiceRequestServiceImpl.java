@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,9 +59,17 @@ public class ServiceRequestServiceImpl implements ServiceRequestService {
 	}
 
 	@Override
-	public List<ServiceRequestDTO> getAllServiceRequests() {
-		return serviceRequestRepository.findAll().stream().map(mapstructImplNew::serviceRequestToServiceRequestDTO)
-				.collect(Collectors.toList());
+	public List<ServiceRequestDTO> getAllServiceRequests(String userRole, Integer userID) {
+
+		List<ServiceRequest> resultList = new ArrayList<>();
+		if (userRole.equals("admin"))
+			resultList = serviceRequestRepository.findAll();
+		else if (userRole.equals("client")) {
+			resultList = serviceRequestRepository.findbyClientId(userID);
+		} else if (userRole.equals("techExpert")) {
+			resultList = serviceRequestRepository.findbyTechExpertId(userID);
+		}
+		return mapstructImplNew.serviceRequestsToServiceRequestDTOs(resultList);
 	}
 
 	@Override

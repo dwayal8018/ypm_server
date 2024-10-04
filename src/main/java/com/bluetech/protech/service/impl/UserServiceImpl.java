@@ -1,9 +1,13 @@
 package com.bluetech.protech.service.impl;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.bluetech.protech.dto.UserDTO;
@@ -19,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	MapstructImplNew mapstruct;
-	
+
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
@@ -30,8 +34,6 @@ public class UserServiceImpl implements UserService {
 //                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 //        return user;
 //    }
-
-
 
 	@Override
 	public List<UserDTO> createUser(List<UserDTO> userDTOList) {
@@ -75,5 +77,19 @@ public class UserServiceImpl implements UserService {
 		if (user.isPresent())
 			return true;
 		return false;
+	}
+
+	@Override
+	public ResponseEntity<?> findByUserNameAndPassword(String username, String password) {
+		User user = userRepository.findByUsernameAndPassword(username, password);
+
+		UserDTO userDTO = mapstruct.userToUserDTO(user);
+		if (user == null) {
+			Map<String, String> map = Collections.singletonMap("error", "User not found");
+			return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
+		}
+//		Map<String, String> map = Collections.singletonMap("userRole", user.getRole());
+		return new ResponseEntity<>(userDTO, HttpStatus.OK);
+
 	}
 }

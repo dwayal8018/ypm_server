@@ -9,7 +9,7 @@ public interface CustomPCBuildService {
 
 	List<CustomPCBuildDTO> createCustomPCBuild(List<CustomPCBuildDTO> customPCBuildList);
 
-	List<CustomPCBuildDTO> getAllCustomPCBuilds();
+	List<CustomPCBuildDTO> getAllCustomPCBuilds(String userRole, Integer userID);
 
 	Optional<CustomPCBuildDTO> getCustomPCBuildById(Integer id);
 

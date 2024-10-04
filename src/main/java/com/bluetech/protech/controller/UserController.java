@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bluetech.protech.dto.LoginRequest;
 import com.bluetech.protech.dto.UserDTO;
 import com.bluetech.protech.service.UserService;
 
@@ -21,25 +23,38 @@ import com.bluetech.protech.service.UserService;
 @RequestMapping("api/users")
 public class UserController {
 
-	@Autowired 
+	@Autowired
 	UserService userService;
-	
+
+//	@Autowired
+//	UtilityService UtilityService;
+
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+		return userService.findByUserNameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
+	}
+
 	@GetMapping("")
-	public List<UserDTO> getUsers(@RequestParam(name="search") String search) {
+	public List<UserDTO> getUsers(@RequestParam(name = "search") String search) {
 		return userService.getUsers(search);
 
 	}
+
 	@GetMapping("/exists/{username}")
-	public Boolean getUserByName(@PathVariable(name="username") String username) {
+	public Boolean getUserByName(@PathVariable(name = "username") String username) {
 		return userService.userExists(username);
-		
+
 	}
 
 	@PostMapping
-	public List<UserDTO> createUser(@RequestBody List<UserDTO> userList) {
-		return userService.createUser(userList);
+	public List<UserDTO> createUser(@RequestBody UserDTO user) {
+		return userService.createUser(Arrays.asList(user));
 	}
-	
+//	@PostMapping
+//	public List<UserDTO> createUsers(@RequestBody List<UserDTO> userList) {
+//		return userService.createUser(userList);
+//	}
+
 	@PostMapping("/register")
 	public List<UserDTO> registerUser(@RequestBody UserDTO user) {
 		return userService.createUser(Arrays.asList(user));

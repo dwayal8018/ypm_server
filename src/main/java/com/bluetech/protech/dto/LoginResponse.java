@@ -1,4 +1,4 @@
-package com.bluetech.protech.controller;
+package com.bluetech.protech.dto;
 
 
 public class LoginResponse {

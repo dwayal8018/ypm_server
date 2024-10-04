@@ -2,9 +2,12 @@ package com.bluetech.protech.service;
 
 import java.util.List;
 
-import com.bluetech.protech.dto.UserDTO;
+import org.springframework.http.ResponseEntity;
 
-public interface UserService  {
+import com.bluetech.protech.dto.UserDTO;
+import com.bluetech.protech.pojo.User;
+
+public interface UserService {
 
 	List<UserDTO> createUser(List<UserDTO> userList);
 
@@ -20,7 +23,8 @@ public interface UserService  {
 
 	Boolean userExists(String username);
 
-//	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+	ResponseEntity<?> findByUserNameAndPassword(String username, String password);
 
+//	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
 }

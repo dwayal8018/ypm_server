@@ -3,8 +3,6 @@ package com.bluetech.protech.pojo;
 import java.util.Date;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,7 +17,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "tb_mas_serviceRequest")
+@Table(name = "tb_mas_service_request")
 public class ServiceRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

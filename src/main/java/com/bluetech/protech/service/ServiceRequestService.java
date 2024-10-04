@@ -9,7 +9,7 @@ public interface ServiceRequestService {
 
 	List<ServiceRequestDTO> createServiceRequest(List<ServiceRequestDTO> list);
 
-	List<ServiceRequestDTO> getAllServiceRequests();
+	List<ServiceRequestDTO> getAllServiceRequests(String userRole, Integer userID);
 
 	Optional<ServiceRequestDTO> getServiceRequestById(Integer id);
 

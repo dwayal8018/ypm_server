@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bluetech.protech.dto.CustomPCBuildDTO;
@@ -37,8 +38,8 @@ public class CustomPCBuildController {
 //    }
 
     @GetMapping
-    public ResponseEntity<List<CustomPCBuildDTO>> getAllCustomPCBuilds() {
-        List<CustomPCBuildDTO> builds = customPCBuildService.getAllCustomPCBuilds();
+    public ResponseEntity<List<CustomPCBuildDTO>> getAllCustomPCBuilds(@RequestParam(name = "userRole") String userRole, @RequestParam(name = "userID") Integer userID) {
+        List<CustomPCBuildDTO> builds = customPCBuildService.getAllCustomPCBuilds(userRole,userID);
         return new ResponseEntity<>(builds, HttpStatus.OK);
     }
 
