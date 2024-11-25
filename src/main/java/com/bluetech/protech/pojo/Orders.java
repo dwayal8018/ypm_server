@@ -3,8 +3,11 @@ package com.bluetech.protech.pojo;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,17 +44,21 @@ public class Orders {
 	@JoinColumn(name = "CustomPCID")
 	private CustomPCBuild customPCBuild;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "ClientID")
 	private User client;
 
-	@OneToMany(mappedBy = "order")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	private Set<Payment> payments;
 
-	@OneToMany(mappedBy = "order")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	private Set<Invoice> invoices;
 
-	@OneToMany(mappedBy = "order")
+//	@JsonIgnore
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	private Set<Delivery> deliveries;
 
 	public Integer getOrderID() {

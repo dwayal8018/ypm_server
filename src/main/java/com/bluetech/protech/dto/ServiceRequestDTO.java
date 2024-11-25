@@ -20,9 +20,9 @@ public class ServiceRequestDTO {
 
 	private UserDTO techExpert;
 
-	private Set<ReviewFeedbackDTO> reviewFeedbacks;
+//	private Set<ReviewFeedbackDTO> reviewFeedbacks;
 
-	private Set<OrdersDTO> orders;
+//	private Set<OrdersDTO> orders;
 
 	public Integer getServiceID() {
 		return serviceID;
@@ -80,20 +80,20 @@ public class ServiceRequestDTO {
 		this.techExpert = techExpert;
 	}
 
-	public Set<ReviewFeedbackDTO> getReviewFeedbacks() {
-		return reviewFeedbacks;
-	}
-
-	public void setReviewFeedbacks(Set<ReviewFeedbackDTO> reviewFeedbacks) {
-		this.reviewFeedbacks = reviewFeedbacks;
-	}
-
-	public Set<OrdersDTO> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<OrdersDTO> orders) {
-		this.orders = orders;
-	}
+//	public Set<ReviewFeedbackDTO> getReviewFeedbacks() {
+//		return reviewFeedbacks;
+//	}
+//
+//	public void setReviewFeedbacks(Set<ReviewFeedbackDTO> reviewFeedbacks) {
+//		this.reviewFeedbacks = reviewFeedbacks;
+//	}
+//
+//	public Set<OrdersDTO> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(Set<OrdersDTO> orders) {
+//		this.orders = orders;
+//	}
 
 }

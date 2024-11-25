@@ -17,17 +17,11 @@ public class OrdersDTO {
 
 	private Double totalCost;
 
-	private ServiceRequest serviceRequest; // multiple orders for single servicerequest
+	private ServiceRequestDTO serviceRequest; // multiple orders for single servicerequest
 
-	private CustomPCBuild customPCBuild;
+	private CustomPCBuildDTO customPCBuild;
 
-	private User client;
-
-	private Set<PaymentDTO> payments;
-
-	private Set<InvoiceDTO> invoices;
-
-	private Set<DeliveryDTO> deliveries;
+	private UserDTO client;
 
 	public Integer getOrderID() {
 		return orderID;
@@ -61,52 +55,28 @@ public class OrdersDTO {
 		this.totalCost = totalCost;
 	}
 
-	public ServiceRequest getServiceRequest() {
+	public ServiceRequestDTO getServiceRequest() {
 		return serviceRequest;
 	}
 
-	public void setServiceRequest(ServiceRequest serviceRequest) {
+	public void setServiceRequest(ServiceRequestDTO serviceRequest) {
 		this.serviceRequest = serviceRequest;
 	}
 
-	public CustomPCBuild getCustomPCBuild() {
+	public CustomPCBuildDTO getCustomPCBuild() {
 		return customPCBuild;
 	}
 
-	public void setCustomPCBuild(CustomPCBuild customPCBuild) {
+	public void setCustomPCBuild(CustomPCBuildDTO customPCBuild) {
 		this.customPCBuild = customPCBuild;
 	}
 
-	public User getClient() {
+	public UserDTO getClient() {
 		return client;
 	}
 
-	public void setClient(User client) {
+	public void setClient(UserDTO client) {
 		this.client = client;
 	}
-
-	public Set<PaymentDTO> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(Set<PaymentDTO> payments) {
-		this.payments = payments;
-	}
-
-	public Set<InvoiceDTO> getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(Set<InvoiceDTO> invoices) {
-		this.invoices = invoices;
-	}
-
-	public Set<DeliveryDTO> getDeliveries() {
-		return deliveries;
-	}
-
-	public void setDeliveries(Set<DeliveryDTO> deliveries) {
-		this.deliveries = deliveries;
-	}
-
+	
 }

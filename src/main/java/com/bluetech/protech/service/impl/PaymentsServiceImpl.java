@@ -1,7 +1,9 @@
 package com.bluetech.protech.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,12 @@ public class PaymentsServiceImpl implements PaymentsService {
 	}
 
 	public List<PaymentDTO> getAllPayments() {
-		return mapstructImplNew.paymentsToPaymentDTOs(paymentsRepository.findAll());
+//		return mapstructImplNew.paymentsToPaymentDTOs(paymentsRepository.findAll());
+		List<Payment> PaymentList=new ArrayList<>();
+		PaymentList=paymentsRepository.findAll();
+		 List<PaymentDTO> payMentDTOList= PaymentList.stream().map(mapstructImplNew::paymentToPaymentDTO)
+				.collect(Collectors.toList());
+		 return payMentDTOList;
 	}
 
 	public Optional<PaymentDTO> getPaymentById(Integer id) {

@@ -48,6 +48,8 @@ public interface Mapstruct {
 
 	List<InvoiceDTO> invoicesToInvoiceDTOs(List<Invoice> invoices);
 
+	OrdersDTO ordersToOrdersDTO(Orders order);
+	
 	List<Orders> ordersDTOsToOrders(List<OrdersDTO> ordersDTOs);
 
 	List<OrdersDTO> ordersToOrdersDTOs(List<Orders> orders);

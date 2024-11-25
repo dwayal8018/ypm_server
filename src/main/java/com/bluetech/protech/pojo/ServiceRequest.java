@@ -52,11 +52,11 @@ public class ServiceRequest {
 	private User techExpert;
 
 //	@JsonIgnore
-	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.LAZY)
 	private Set<ReviewFeedback> reviewFeedbacks;
 
 //	@JsonIgnore
-	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "serviceRequest", fetch = FetchType.LAZY)
 	private Set<Orders> orders;
 
 	public Integer getServiceID() {

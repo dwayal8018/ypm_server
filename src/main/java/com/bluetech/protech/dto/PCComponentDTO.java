@@ -14,7 +14,7 @@ public class PCComponentDTO {
 
 	private String componentType; // e.g., 'GPU', 'CPU'
 
-	private Set<ComponentInventoryDTO> inventories;
+//	private Set<ComponentInventoryDTO> inventories;
 
 	public Integer getPcComponentID() {
 		return pcComponentID;
@@ -48,12 +48,12 @@ public class PCComponentDTO {
 		this.componentType = componentType;
 	}
 
-	public Set<ComponentInventoryDTO> getInventories() {
-		return inventories;
-	}
-
-	public void setInventories(Set<ComponentInventoryDTO> inventories) {
-		this.inventories = inventories;
-	}
+//	public Set<ComponentInventoryDTO> getInventories() {
+//		return inventories;
+//	}
+//
+//	public void setInventories(Set<ComponentInventoryDTO> inventories) {
+//		this.inventories = inventories;
+//	}
 
 }

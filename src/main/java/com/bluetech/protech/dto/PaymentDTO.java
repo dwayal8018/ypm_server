@@ -12,7 +12,7 @@ public class PaymentDTO {
 
 	private Date paymentDate;
 
-	private OrdersDTO order;
+	private OrdersDTO orderDTO;
 
 	public Integer getPaymentID() {
 		return paymentID;
@@ -47,11 +47,11 @@ public class PaymentDTO {
 	}
 
 	public OrdersDTO getOrder() {
-		return order;
+		return orderDTO;
 	}
 
 	public void setOrder(OrdersDTO order) {
-		this.order = order;
+		this.orderDTO = order;
 	}
 
 
